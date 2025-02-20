@@ -1,0 +1,23 @@
+{
+  "name": "미스테리야 카스포인트",
+  "short_name": "미스야 카포",
+  "description": "2025 미스테리야 미스터 미스야를 위한 카스포인트",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "scope": "/",
+  "id": "/Mysteryacass",
+  "icons": [
+    {
+      "src": "/icons/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/MysteryaLogo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

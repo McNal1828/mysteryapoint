@@ -1,0 +1,60 @@
+.maingrid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1280px) {
+  .maingrid {
+    grid-template-columns: 1fr 1fr; /* 첫 번째 아이템은 200px, 나머지는 빈 공간 */
+  }
+}
+.player {
+  position: absolute;
+  width: 60px; /* 플레이어 이미지 크기 */
+  height: 60px;
+  transform: translate(-50%, -50%); /* 중심점 기준으로 배치 */
+}
+
+/* 각 플레이어의 위치 설정 */
+.pitcher {
+  top: 65%;
+  left: 50%;
+}
+
+.catcher {
+  top: 85%;
+  left: 50%;
+}
+
+.firstbase {
+  top: 65%;
+  left: 68%;
+}
+
+.secondbase {
+  top: 45%;
+  left: 61%;
+}
+
+.thirdbase {
+  top: 65%;
+  left: 32%;
+}
+
+.shortstop {
+  top: 45%;
+  left: 39%;
+}
+
+.leftfield {
+  top: 30%;
+  left: 20%;
+}
+
+.centerfield {
+  top: 20%;
+  left: 50%;
+}
+
+.rightfield {
+  top: 30%;
+  left: 80%;
+}
