@@ -10,6 +10,7 @@ export default function Home() {
   const [table, settable] = useState([]);
   const [cdata, setcdata] = useState({});
   const [ismodalopen, setismodalopen] = useState(false);
+  const [attend, setattend] = useState([]);
 
   useEffect(() => {
     fetch(`/api/point`, { cache: 'no-store' })
@@ -17,8 +18,14 @@ export default function Home() {
       .then((data) => {
         setdata(data.data);
       });
+    fetch(`/api/attend`, { cache: 'no-store' })
+      .then((data) => data.json())
+      .then((data) => {
+        setattend(data.attend);
+      });
     return () => {
       setdata([]);
+      setattend([]);
     };
   }, []);
   useEffect(() => {
@@ -69,14 +76,39 @@ export default function Home() {
   }, [data]);
   useEffect(() => {
     const result = [];
-    const recentdate = [...new Set(data.filter((item) => item.type !== 'prac').map((item) => item.date))].sort();
-    const formattedDates = recentdate.map((dateStr) => {
-      const date = new Date(dateStr); // 문자열을 Date 객체로 변환
-      const month = date.getUTCMonth() + 1; // 월은 0부터 시작하므로 +1
-      const day = date.getUTCDate(); // 일 가져오기
-      return `${month}/${day}`; // 'M/D' 형식으로 변환
-    });
+    const formattedDates = attend
+      .filter((item) => item.type !== 'prac')
+      .map((ddd) => {
+        const date = new Date(ddd.date); // 문자열을 Date 객체로 변환
+        const month = date.getUTCMonth() + 1; // 월은 0부터 시작하므로 +1
+        const day = date.getUTCDate(); // 일 가져오기
+        let type;
+        switch (ddd.type) {
+          case 'league':
+            type = '리그';
+            break;
+          case 'pracmatch':
+            type = '연습시합';
+            break;
+          case 'tournament':
+            type = '대회';
+            break;
+          default:
+            break;
+        }
+        return [`${month}/${day}`, type]; // 'M/D' 형식으로 변환
+      });
     result.push(['이름', '총점수', ...formattedDates]);
+
+    // const result = [];
+    const recentdate = [...new Set(data.filter((item) => item.type !== 'prac').map((item) => item.date))].sort();
+    // const formattedDates = recentdate.map((dateStr) => {
+    //   const date = new Date(dateStr); // 문자열을 Date 객체로 변환
+    //   const month = date.getUTCMonth() + 1; // 월은 0부터 시작하므로 +1
+    //   const day = date.getUTCDate(); // 일 가져오기
+    //   return `${month}/${day}`; // 'M/D' 형식으로 변환
+    // });
+    // result.push(['이름', '총점수', ...formattedDates]);
 
     const playerBacknumberList = [
       '김건희',
@@ -106,6 +138,7 @@ export default function Home() {
       '홍성운',
       '홍승표',
     ];
+    const avg = ['평균'];
     for (let backnumber of playerBacknumberList) {
       const playerDatas = data.filter((item) => item.name === backnumber);
       let tempresult = [];
@@ -230,7 +263,14 @@ export default function Home() {
             <tr>
               {table?.[0]?.map((Content, index) => (
                 <th scope='col' key={index}>
-                  {Content}
+                  {index >= 2 ? (
+                    <>
+                      {Content[0]}
+                      <sub>{Content[1]}</sub>
+                    </>
+                  ) : (
+                    <>{Content}</>
+                  )}
                 </th>
               ))}
               {/* <th scope='col'>

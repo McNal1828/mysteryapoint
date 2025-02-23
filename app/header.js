@@ -8,9 +8,6 @@ export default function Header() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const adminFlag = localStorage.getItem('isAdmin');
-      console.log('0000');
-      console.log(adminFlag);
-      console.log('0000');
       setIsAdmin(adminFlag === 'true');
     }
   }, []);
@@ -19,7 +16,9 @@ export default function Header() {
     return (
       <nav>
         <ul>
-          <li>미스야카스포인트</li>
+          <li>
+            <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>미스야카스포인트</span>
+          </li>
         </ul>
         <ul>
           <li>
@@ -41,7 +40,9 @@ export default function Header() {
     return (
       <nav>
         <ul>
-          <li>미스야카스포인트</li>
+          <li>
+            <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>미스야카스포인트</span>
+          </li>
         </ul>
         <ul>
           <li>
@@ -53,6 +54,9 @@ export default function Header() {
       <li>
         <Link href={'/lineupedit'}>라인업수정</Link>
       </li> */}
+          <li>
+            <Link href={'/attend'}>출석부</Link>
+          </li>
           <li>
             <Link href={'/attendinput'}>출석부입력</Link>
           </li>

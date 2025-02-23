@@ -7,6 +7,8 @@ const withPWA = nextPwa({
 });
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  reactStrictMode: false,
+};
 
 export default withPWA(nextConfig);

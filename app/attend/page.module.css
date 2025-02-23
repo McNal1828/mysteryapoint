@@ -1,0 +1,11 @@
+.maingrid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 800px) {
+  .maingrid {
+    grid-template-columns: 350px 1fr; /* 첫 번째 아이템은 200px, 나머지는 빈 공간 */
+  }
+}
+.table tr th {
+  min-width: 110px;
+}

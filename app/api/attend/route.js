@@ -16,9 +16,13 @@ export async function GET(request, { params }) {
    */
   const client = await mongoClientPromise;
   const db = client.db('mysterya');
-  const attend = await db.collection('attend').findOne({ date: new Date(date) });
-
-  return NextResponse.json({ attend: attend.members });
+  if (date) {
+    const attend = await db.collection('attend').findOne({ date: new Date(date) });
+    return NextResponse.json({ attend: attend.members });
+  } else {
+    const attend = await db.collection('attend').find({}).sort({ date: 1 }).toArray();
+    return NextResponse.json({ attend });
+  }
 }
 /**
  *
@@ -38,6 +42,10 @@ export async function POST(request, { params }) {
     { upsert: true } // 문서가 없으면 새로 추가
   );
 
+  await db.collection('casspoint').deleteMany({
+    date: new Date(data.date),
+  });
+
   // 전달받은 backnumber에 해당하는 문서들을 처리
   for (const member of data.members) {
     const { backnumber, name } = member;
@@ -55,12 +63,6 @@ export async function POST(request, { params }) {
       });
     }
   }
-  const backnumbers = data.members.map((member) => member.backnumber);
-  // backnumber가 있지만 해당 date가 아닌 문서 삭제
-  await db.collection('casspoint').deleteMany({
-    date: new Date(data.date),
-    backnumber: { $nin: backnumbers }, // backnumber가 전달받은 리스트에 없는 문서 삭제
-  });
 
   return NextResponse.json({ message: '저장완료' }, { status: 201 });
 }
