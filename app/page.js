@@ -13,15 +13,15 @@ export default function Home() {
   const [attend, setattend] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/point`, { cache: 'no-store' })
-      .then((data) => data.json())
-      .then((data) => {
-        setdata(data.data);
-      });
     fetch(`/api/attend`, { cache: 'no-store' })
       .then((data) => data.json())
       .then((data) => {
         setattend(data.attend);
+      });
+    fetch(`/api/point`, { cache: 'no-store' })
+      .then((data) => data.json())
+      .then((data) => {
+        setdata(data.data);
       });
     return () => {
       setdata([]);
@@ -161,7 +161,7 @@ export default function Home() {
     return () => {
       settable([]);
     };
-  }, [data]);
+  }, [data, attend]);
 
   const isSSR = typeof window === 'undefined';
   const htmlTag = !isSSR && document.querySelector('html');

@@ -16,9 +16,7 @@ export default function Header() {
     return (
       <nav>
         <ul>
-          <li>
-            <span style={{ fontSize: '1.5rem', fontWeight: 700 }}>미스야 카스포인트</span>
-          </li>
+          <li style={{ fontSize: '1.5rem', fontWeight: 700 }}>미스야카스포인트</li>
         </ul>
         <ul>
           <li>
