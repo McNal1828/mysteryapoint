@@ -40,7 +40,7 @@ export default function Point() {
     { title: '4사구', point: -5 },
   ];
   const normalSet = [
-    { title: '참석', point: 25 },
+    { title: '참석', point: 20 },
     { title: '지각', point: -10 },
     { title: '무단불참', point: -25 },
   ];
