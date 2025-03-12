@@ -59,7 +59,7 @@ export async function POST(request, { params }) {
         name,
         attack: [],
         defense: [],
-        normal: [{ title: '참석', point: 25 }],
+        normal: [{ title: '참석', point: 20 }],
       });
     }
   }
