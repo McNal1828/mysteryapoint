@@ -299,7 +299,7 @@ export default function Home() {
                       }
                     }}
                   >
-                    {cell.total != null ? cell.total : ''}
+                    {cell.total != null ? (cell.total >= 0 ? '+' + cell.total : cell.total) : ''}
                   </td>
                 ))}
               </tr>
