@@ -293,7 +293,7 @@ export default function Home() {
                   <td
                     key={cellIndex}
                     onClick={(e) => {
-                      if (cell.total) {
+                      if (cell.total != null) {
                         modalopen(e);
                         setcdata(cell);
                       }
