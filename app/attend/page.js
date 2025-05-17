@@ -71,6 +71,7 @@ export default function Home() {
             "최웅수",
             "홍성운",
             "홍승표",
+            "홍인표",
         ];
         for (let backnumber of playerBacknumberList) {
             let tempresult = [];
