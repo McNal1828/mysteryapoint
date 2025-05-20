@@ -340,7 +340,7 @@ export default function Attend() {
                     <label>
                         <input
                             type="checkbox"
-                            data-name="홍승표"
+                            data-name="홍인표"
                             data-number="7"
                             onChange={handleCheckbox}
                         />
